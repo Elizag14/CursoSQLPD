@@ -11,3 +11,53 @@ O Canal programação dinâmica possui uma playlist completa chamado curso Abert
 https://www.youtube.com/watch?v=BRPUA0EgS4I&list=PL5TJqBvpXQv5n1N15kcK1m9oKJm_cv-m6
 
 Esse curso se destina a quem deseja aprender a extrair informações de bancos de dados utilizando SQL. Utilizaremos como ambiente de aprendizado o Big Query e como fontes de dados, algumas entre as inúmeras bases de dados disponibilizadas, tratadas e mantidas pelo projeto Base dos Dados.
+
+//ver todas colunas da tabela
+SELECT * FROM `basedosdados.br_poder360_pesquisas.microdados` LIMIT 1000
+
+// selecionar,as colunas: ano,cargo, sigla do partido
+SELECT ano,cargo, sigla_partido FROM `basedosdados.br_poder360_pesquisas.microdados` LIMIT 1000
+
+//filtrando o municipio Duque de Caxias
+SELECT * FROM `basedosdados.br_poder360_pesquisas.microdados` 
+WHERE nome_municipio = "Duque de Caxias"
+LIMIT 10;
+
+//selecionando todos os institutos sem repetir//
+SELECT DISTINCT instituto
+FROM `basedosdados.br_poder360_pesquisas.microdados`
+
+//pesquisar instituto DataFolha após 2013
+SELECT * FROM `basedosdados.br_poder360_pesquisas.microdados`
+WHERE instituto = 'Datafolha' AND ano >2013;
+
+
+//pesquisar instituto DataFolha e Ibope
+SELECT * FROM `basedosdados.br_poder360_pesquisas.microdados`
+WHERE instituto = 'Datafolha' OR instituto= 'Ibope'
+LIMIT 1000;
+
+//pesquisar instituto DataFolha e Ibope no ano 2018
+SELECT * FROM `basedosdados.br_poder360_pesquisas.microdados`
+WHERE (instituto = 'Datafolha' OR instituto= 'Ibope') and ano =2018
+LIMIT 1000;
+
+//pesquisar instituto DataFolha e Ibope no ano 2018 e em SP
+SELECT * FROM `basedosdados.br_poder360_pesquisas.microdados`
+WHERE (instituto = 'Datafolha' OR instituto= 'Ibope') and ano =2018 and sigla_uf = 'SP'
+LIMIT 1000;
+
+//pesquisar instituto DataFolha e Ibope no ano 2018 e em SP
+SELECT * FROM `basedosdados.br_poder360_pesquisas.microdados`
+WHERE (instituto = 'Ibope') and ano =2018 and sigla_uf = 'SP'
+LIMIT 1000;
+
+//pesquisar quais institutos que tem em SP no ano 2018 
+SELECT DISTINCT instituto from `basedosdados.br_poder360_pesquisas.microdados`
+where ano =2018 and sigla_uf = 'SP'
+
+
+//quais as siglas dos partidos, que apareceram em pesquisas eleitoras de 2014 até agora.
+SELECT DISTINCT sigla_partido FROM `basedosdados.br_poder360_pesquisas.microdados`
+where ano >2014
+
